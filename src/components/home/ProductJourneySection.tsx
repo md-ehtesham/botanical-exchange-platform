@@ -61,32 +61,32 @@ const ProductJourneySection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-herb-50/50">
+    <section ref={sectionRef} className="py-10 md:py-20 bg-herb-50/50">
       <div className="container-wide">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-block px-4 py-1.5 bg-herb-100 text-herb-700 rounded-full text-sm font-medium mb-6 border border-herb-200 shadow-sm">
+        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-16 px-4">
+          <div className="inline-block px-3 py-1 md:px-4 md:py-1.5 bg-herb-100 text-herb-700 rounded-full text-xs md:text-sm font-medium mb-4 md:mb-6 border border-herb-200 shadow-sm">
             Our Process
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">
             From Nature to Formulation: The Star Hi Herbs Journey
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 text-sm md:text-lg">
             We maintain complete control and transparency throughout our supply chain, ensuring quality at every step from plant selection to final delivery.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 px-4 sm:px-0">
           {steps.map((step, index) => (
             <div 
               key={index} 
-              className="journey-step fade-in-section bg-white rounded-lg p-8 shadow-soft border border-herb-100 relative h-full"
+              className="journey-step fade-in-section bg-white rounded-lg p-5 md:p-8 shadow-soft border border-herb-100 relative h-full"
             >
-              <div className="w-12 h-12 rounded-full bg-herb-100 flex items-center justify-center text-herb-600 mb-6 text-xl">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-herb-100 flex items-center justify-center text-herb-600 mb-4 md:mb-6 text-base md:text-xl">
                 <span>{step.icon}</span>
               </div>
-              <div className="text-cream-500 font-bold text-2xl mb-3">{step.number}</div>
-              <h3 className="text-xl font-semibold mb-3 text-herb-700">{step.title}</h3>
-              <p className="text-gray-600">{step.description}</p>
+              <div className="text-cream-500 font-bold text-xl md:text-2xl mb-2 md:mb-3">{step.number}</div>
+              <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-herb-700">{step.title}</h3>
+              <p className="text-gray-600 text-sm md:text-base">{step.description}</p>
               
               {index < steps.length - 1 && (
                 <div className="hidden lg:block absolute top-1/2 -right-4 transform translate-x-0 -translate-y-1/2 z-10">

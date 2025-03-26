@@ -1,5 +1,6 @@
 
 import { useRef, useEffect } from 'react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const certifications = [
   {
@@ -38,10 +39,11 @@ const certifications = [
 
 const CertificationsSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
+    if (!scrollContainer || isMobile) return;
     
     let scrollDirection = 1;
     let scrollAmount = 0;
@@ -69,16 +71,16 @@ const CertificationsSection = () => {
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [isMobile]);
 
   return (
-    <section className="py-16 bg-herb-50">
+    <section className="py-10 md:py-16 bg-herb-50">
       <div className="container-wide">
-        <div className="text-center max-w-3xl mx-auto mb-10 fade-in-section">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-6 md:mb-10 fade-in-section px-4">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4">
             Our Quality Certifications
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-sm md:text-base">
             We maintain the highest industry standards through rigorous certification processes, ensuring our products meet global quality requirements.
           </p>
         </div>
@@ -86,22 +88,22 @@ const CertificationsSection = () => {
         <div className="relative overflow-hidden px-4">
           <div 
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto py-6 no-scrollbar"
+            className="flex gap-4 md:gap-6 overflow-x-auto py-4 md:py-6 no-scrollbar"
             style={{ scrollBehavior: 'smooth' }}
           >
             {certifications.map((cert, index) => (
               <div key={index} className="flex-shrink-0 flex flex-col items-center justify-center">
-                <div className="h-24 w-24 flex items-center justify-center bg-white rounded-lg p-3 shadow-soft">
-                  <img src={cert.logo} alt={cert.name} className="max-h-16 max-w-16" />
+                <div className="h-16 w-16 md:h-24 md:w-24 flex items-center justify-center bg-white rounded-lg p-2 md:p-3 shadow-soft">
+                  <img src={cert.logo} alt={cert.name} className="max-h-12 max-w-12 md:max-h-16 md:max-w-16" />
                 </div>
-                <span className="mt-3 text-sm text-gray-600 font-medium">{cert.name}</span>
+                <span className="mt-2 md:mt-3 text-xs md:text-sm text-gray-600 font-medium text-center px-1">{cert.name}</span>
               </div>
             ))}
           </div>
           
           {/* Gradient fade on sides */}
-          <div className="absolute top-0 left-0 h-full w-12 bg-gradient-to-r from-herb-50 to-transparent z-10"></div>
-          <div className="absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-herb-50 to-transparent z-10"></div>
+          <div className="absolute top-0 left-0 h-full w-8 md:w-12 bg-gradient-to-r from-herb-50 to-transparent z-10"></div>
+          <div className="absolute top-0 right-0 h-full w-8 md:w-12 bg-gradient-to-l from-herb-50 to-transparent z-10"></div>
         </div>
       </div>
     </section>
