@@ -64,10 +64,10 @@ const ProductJourneySection = () => {
     <section ref={sectionRef} className="py-20 bg-herb-50/50">
       <div className="container-wide">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-block px-4 py-1 bg-herb-100 text-herb-700 rounded-full text-sm font-medium mb-6">
+          <div className="inline-block px-4 py-1.5 bg-herb-100 text-herb-700 rounded-full text-sm font-medium mb-6 border border-herb-200 shadow-sm">
             Our Process
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-balance">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
             From Nature to Formulation: The Star Hi Herbs Journey
           </h2>
           <p className="text-gray-600 text-lg">
@@ -79,13 +79,13 @@ const ProductJourneySection = () => {
           {steps.map((step, index) => (
             <div 
               key={index} 
-              className="journey-step fade-in-section bg-white rounded-lg p-6 shadow-soft border border-herb-100 relative"
+              className="journey-step fade-in-section bg-white rounded-lg p-8 shadow-soft border border-herb-100 relative h-full"
             >
-              <div className="w-12 h-12 rounded-full bg-herb-200 flex items-center justify-center text-herb-600 mb-6">
+              <div className="w-12 h-12 rounded-full bg-herb-100 flex items-center justify-center text-herb-600 mb-6 text-xl">
                 <span>{step.icon}</span>
               </div>
               <div className="text-cream-500 font-bold text-2xl mb-3">{step.number}</div>
-              <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
+              <h3 className="text-xl font-semibold mb-3 text-herb-700">{step.title}</h3>
               <p className="text-gray-600">{step.description}</p>
               
               {index < steps.length - 1 && (

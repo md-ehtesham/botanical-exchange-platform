@@ -135,6 +135,16 @@
     opacity: 1;
     transform: translateY(0);
   }
+  
+  /* Add styles for better no-scrollbar experience */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
 }
 
 @layer utilities {

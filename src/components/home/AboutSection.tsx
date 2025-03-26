@@ -1,5 +1,7 @@
 
-import Button from '../common/Button';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import { Check } from 'lucide-react';
 
 const AboutSection = () => {
   return (
@@ -27,43 +29,49 @@ const AboutSection = () => {
           
           <div className="fade-in-section">
             <div className="max-w-lg">
-              <div className="inline-block px-4 py-1 bg-herb-100 text-herb-700 rounded-full text-sm font-medium mb-6">
+              <div className="inline-block px-4 py-1.5 bg-herb-100 text-herb-700 rounded-full text-sm font-medium mb-6 border border-herb-200 shadow-sm">
                 About Star Hi Herbs
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-balance">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Committed to Quality and Sustainability Since 1998
               </h2>
-              <p className="text-gray-700 mb-6">
+              <p className="text-gray-700 mb-6 leading-relaxed">
                 Star Hi Herbs has been at the forefront of herbal extract manufacturing for over two decades. Our state-of-the-art facilities combine traditional knowledge with modern technology to produce premium botanical ingredients.
               </p>
-              <p className="text-gray-700 mb-6">
-                We work directly with farmers to ensure sustainable sourcing practices while maintaining complete traceability from seed to extract. Our team of expert scientists, herbalists, and quality control specialists ensure that every product meets the highest standards of purity, potency, and efficacy.
+              <p className="text-gray-700 mb-6 leading-relaxed">
+                We work directly with farmers to ensure sustainable sourcing practices while maintaining complete traceability from seed to extract. Our team of expert scientists, herbalists, and quality control specialists ensure that every product meets the highest standards.
               </p>
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-4 mb-8">
                 <li className="flex items-start">
-                  <span className="h-6 w-6 rounded-full bg-herb-100 flex items-center justify-center text-herb-600 mr-3 mt-0.5">✓</span>
+                  <span className="h-6 w-6 rounded-full bg-herb-100 flex items-center justify-center text-herb-600 mr-3 mt-0.5">
+                    <Check size={14} />
+                  </span>
                   <span className="text-gray-700">State-of-the-art manufacturing facilities</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="h-6 w-6 rounded-full bg-herb-100 flex items-center justify-center text-herb-600 mr-3 mt-0.5">✓</span>
+                  <span className="h-6 w-6 rounded-full bg-herb-100 flex items-center justify-center text-herb-600 mr-3 mt-0.5">
+                    <Check size={14} />
+                  </span>
                   <span className="text-gray-700">Rigorous quality control measures</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="h-6 w-6 rounded-full bg-herb-100 flex items-center justify-center text-herb-600 mr-3 mt-0.5">✓</span>
+                  <span className="h-6 w-6 rounded-full bg-herb-100 flex items-center justify-center text-herb-600 mr-3 mt-0.5">
+                    <Check size={14} />
+                  </span>
                   <span className="text-gray-700">Sustainable and ethical sourcing practices</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="h-6 w-6 rounded-full bg-herb-100 flex items-center justify-center text-herb-600 mr-3 mt-0.5">✓</span>
+                  <span className="h-6 w-6 rounded-full bg-herb-100 flex items-center justify-center text-herb-600 mr-3 mt-0.5">
+                    <Check size={14} />
+                  </span>
                   <span className="text-gray-700">Innovative R&D for new formulations</span>
                 </li>
               </ul>
               <Button
-                variant="primary"
-                size="md"
+                className="bg-herb-500 hover:bg-herb-600 shadow-md"
                 asChild
-                href="/about-us"
               >
-                Learn More About Us
+                <Link to="/about-us">Learn More About Us</Link>
               </Button>
             </div>
           </div>
