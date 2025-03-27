@@ -5,22 +5,22 @@ import { ArrowRight } from 'lucide-react';
 
 const CtaSection = () => {
   return (
-    <section className="py-20 bg-cream-500/10">
+    <section className="py-20 bg-starhi-green/10">
       <div className="container-wide">
-        <div className="rounded-2xl bg-gradient-to-br from-herb-500 to-herb-700 shadow-lg overflow-hidden">
+        <div className="rounded-2xl bg-gradient-to-br from-starhi-green to-starhi-green-dark shadow-lg overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="p-10 md:p-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white leading-tight">
                 Ready to Enhance Your Product Line?
               </h2>
-              <p className="text-herb-100 text-lg mb-8 leading-relaxed">
+              <p className="text-white/90 text-lg mb-8 leading-relaxed">
                 Whether you need standardized extracts, organic ingredients, or custom formulations, our team is here to support your product development journey.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button 
                   variant="secondary" 
                   size="lg"
-                  className="bg-white text-herb-700 hover:bg-cream-100 border-transparent shadow-md"
+                  className="bg-white text-starhi-green hover:bg-white/90 border-transparent shadow-md"
                   asChild 
                 >
                   <Link to="/request-sample">
@@ -48,7 +48,7 @@ const CtaSection = () => {
                   alt="Laboratory samples" 
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-herb-700/30 backdrop-blur-sm"></div>
+                <div className="absolute inset-0 bg-starhi-green-dark/30 backdrop-blur-sm"></div>
               </div>
               
               <div className="relative z-10 h-full flex items-center justify-center p-10">

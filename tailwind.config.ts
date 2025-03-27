@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -29,17 +28,24 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        
+        // StarHi Herbs brand colors
+        "starhi-green": "#008F00",
+        "starhi-green-dark": "#007000",
+        "starhi-green-light": "#00A000",
+        
+        // Keep the old herb colors for backward compatibility
         herb: {
-          50: "#f6f7f4",
-          100: "#e3e7de",
-          200: "#c5cfbd",
-          300: "#a3b295",
-          400: "#829575", // Main brand color
-          500: "#677c5b",
-          600: "#506348",
-          700: "#3d4c38",
-          800: "#2c372a",
-          900: "#1e251e",
+          50: "#e6f7e6",
+          100: "#c3eac3",
+          200: "#9edd9e",
+          300: "#78cf78",
+          400: "#52c252", 
+          500: "#2ca52c",
+          600: "#008F00", // Main brand color
+          700: "#007000",
+          800: "#005700",
+          900: "#003D00",
         },
         cream: {
           50: "#fdfbf7",
