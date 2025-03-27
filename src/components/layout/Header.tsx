@@ -68,6 +68,9 @@ const Header = () => {
           <Link to="/sustainability" className="text-foreground hover:text-herb-500 transition-colors py-2">
             Sustainability
           </Link>
+          <Link to="/faq" className="text-foreground hover:text-herb-500 transition-colors py-2">
+            FAQ
+          </Link>
           <Link to="/blog" className="text-foreground hover:text-herb-500 transition-colors py-2">
             Blog
           </Link>
@@ -151,6 +154,10 @@ const Header = () => {
             
             <Link to="/sustainability" className="block py-2 px-4 text-foreground hover:bg-herb-50 rounded-md font-medium" onClick={() => setIsMenuOpen(false)}>
               Sustainability
+            </Link>
+            
+            <Link to="/faq" className="block py-2 px-4 text-foreground hover:bg-herb-50 rounded-md font-medium" onClick={() => setIsMenuOpen(false)}>
+              FAQ
             </Link>
             
             <Link to="/blog" className="block py-2 px-4 text-foreground hover:bg-herb-50 rounded-md font-medium" onClick={() => setIsMenuOpen(false)}>

@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { getProductById } from "@/data/products";
 import PageLayout from "@/components/layout/PageLayout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -8,9 +8,13 @@ import { Button } from "@/components/ui/button";
 import { FileText, Download, ShoppingCart, FlaskConical, Building, Beaker, HelpCircle } from "lucide-react";
 import ProductCard from "@/components/products/ProductCard";
 import { getAllProducts } from "@/data/products";
+import CompareButton from "@/components/products/CompareButton";
+import ProductComparisonTool from "@/components/products/ProductComparisonTool";
+import FAQSection from "@/components/common/FAQSection";
 
 const ProductDetail = () => {
   const { productId } = useParams<{ productId: string }>();
+  const location = useLocation();
   const [product, setProduct] = useState(getProductById(productId || ""));
   const [relatedProducts, setRelatedProducts] = useState(getAllProducts().slice(0, 3));
 
@@ -62,10 +66,11 @@ const ProductDetail = () => {
             
             {/* Product Info */}
             <div className="lg:w-3/5">
-              <div className="mb-2">
+              <div className="flex justify-between items-start mb-2">
                 <span className="inline-block px-3 py-1 text-sm font-medium rounded-full bg-herb-100 text-herb-700 capitalize">
                   {product.category}
                 </span>
+                <CompareButton productId={product.id} />
               </div>
               
               <h1 className="text-3xl md:text-4xl font-bold text-herb-800 mb-4">{product.name}</h1>
@@ -92,17 +97,23 @@ const ProductDetail = () => {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-10">
-                <Button className="bg-herb-600 hover:bg-herb-700">
-                  <ShoppingCart className="mr-2 h-4 w-4" />
-                  Order a Sample
+                <Button className="bg-herb-600 hover:bg-herb-700" asChild>
+                  <Link to={`/request-sample?product=${product.id}`}>
+                    <ShoppingCart className="mr-2 h-4 w-4" />
+                    Order a Sample
+                  </Link>
                 </Button>
-                <Button variant="outline" className="border-herb-600 text-herb-600 hover:bg-herb-50">
-                  <FileText className="mr-2 h-4 w-4" />
-                  Request a Quote
+                <Button variant="outline" className="border-herb-600 text-herb-600 hover:bg-herb-50" asChild>
+                  <Link to={`/request-quote?product=${product.id}`}>
+                    <FileText className="mr-2 h-4 w-4" />
+                    Request a Quote
+                  </Link>
                 </Button>
-                <Button variant="ghost" className="text-herb-600 hover:bg-herb-50 hover:text-herb-700">
-                  <Download className="mr-2 h-4 w-4" />
-                  Product Sheet
+                <Button variant="ghost" className="text-herb-600 hover:bg-herb-50 hover:text-herb-700" asChild>
+                  <Link to={`/download-catalogue?product=${product.id}`}>
+                    <Download className="mr-2 h-4 w-4" />
+                    Product Sheet
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -187,14 +198,11 @@ const ProductDetail = () => {
                 <HelpCircle className="mr-2 h-5 w-5" />
                 Frequently Asked Questions
               </h2>
-              <div className="space-y-4">
-                {product.faqs.map((faq, index) => (
-                  <div key={index} className="border-b border-gray-100 pb-4 last:border-b-0 last:pb-0">
-                    <h3 className="font-medium text-lg mb-2 text-herb-700">{faq.question}</h3>
-                    <p className="text-gray-600">{faq.answer}</p>
-                  </div>
-                ))}
-              </div>
+              <FAQSection 
+                faqs={product.faqs.map(faq => ({ question: faq.question, answer: faq.answer }))} 
+                className="p-0"
+                title=""
+              />
             </div>
           </TabsContent>
         </Tabs>
@@ -211,6 +219,9 @@ const ProductDetail = () => {
           </div>
         )}
       </div>
+      
+      {/* Product Comparison Tool */}
+      <ProductComparisonTool />
     </PageLayout>
   );
 };

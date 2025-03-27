@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,10 +7,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import LiveChatSupport from "./components/chat/LiveChatSupport";
 
 // Product Pages
 import ProductsListing from "./pages/products/ProductsListing";
 import ProductDetail from "./pages/products/ProductDetail";
+import ProductCompare from "./pages/products/ProductCompare";
 
 // Company Pages
 import AboutUs from "./pages/company/AboutUs";
@@ -17,6 +20,7 @@ import Quality from "./pages/company/Quality";
 import Sustainability from "./pages/company/Sustainability";
 import CSR from "./pages/company/CSR";
 import Careers from "./pages/company/Careers";
+import FAQ from "./pages/FAQ";
 
 // Blog Pages
 import BlogListing from "./pages/blog/BlogListing";
@@ -51,6 +55,7 @@ const App = () => (
           {/* Product Routes */}
           <Route path="/products" element={<ProductsListing />} />
           <Route path="/products/:productId" element={<ProductDetail />} />
+          <Route path="/products/compare" element={<ProductCompare />} />
           <Route path="/standardized-extracts" element={<ProductsListing category="standardized" />} />
           <Route path="/organic-extracts" element={<ProductsListing category="organic" />} />
           <Route path="/signature-ingredients" element={<ProductsListing category="signature" />} />
@@ -62,6 +67,7 @@ const App = () => (
           <Route path="/sustainability" element={<Sustainability />} />
           <Route path="/csr-initiatives" element={<CSR />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/faq" element={<FAQ />} />
           
           {/* Blog Routes */}
           <Route path="/blog" element={<BlogListing />} />
@@ -77,6 +83,9 @@ const App = () => (
           {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        
+        {/* Global Live Chat Support */}
+        <LiveChatSupport />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
