@@ -1,10 +1,11 @@
-
 import { useState, useEffect } from "react";
 import PageLayout from "@/components/layout/PageLayout";
 import PageHeader from "@/components/common/PageHeader";
 import ProductCard from "@/components/products/ProductCard";
 import { Product, getAllProducts, getProductsByCategory } from "@/data/products";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ProductFilters from "@/components/products/ProductFilters";
+import SearchInput from "@/components/search/SearchInput";
 
 interface ProductsListingProps {
   category?: string;
@@ -12,8 +13,11 @@ interface ProductsListingProps {
 
 const ProductsListing = ({ category }: ProductsListingProps) => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>(category || "all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [sortOption, setSortOption] = useState("featured");
 
   useEffect(() => {
     if (category) {
@@ -22,25 +26,67 @@ const ProductsListing = ({ category }: ProductsListingProps) => {
   }, [category]);
 
   useEffect(() => {
-    let filteredProducts: Product[];
+    // Get products by category
+    const productsForCategory = activeCategory === "all" 
+      ? getAllProducts() 
+      : getProductsByCategory(activeCategory);
     
-    // Filter by category
-    if (activeCategory === "all") {
-      filteredProducts = getAllProducts();
-    } else {
-      filteredProducts = getProductsByCategory(activeCategory);
-    }
+    setProducts(productsForCategory);
+  }, [activeCategory]);
+
+  useEffect(() => {
+    let result = [...products];
     
-    // Filter by search query
+    // Apply search filter
     if (searchQuery.trim() !== "") {
-      filteredProducts = filteredProducts.filter(product => 
+      result = result.filter(product => 
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
         product.shortDescription.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
     
-    setProducts(filteredProducts);
-  }, [activeCategory, searchQuery]);
+    // Apply additional filters (simulated - in a real app these would be based on actual product properties)
+    if (activeFilters.length > 0) {
+      // This is just a simulation - in a real app, the products would have these properties
+      result = result.filter(product => {
+        // For demo purposes, we'll just filter based on some arbitrary logic
+        if (activeFilters.includes("organic") && product.id % 2 === 0) return false;
+        if (activeFilters.includes("kosher") && product.id % 3 === 0) return false;
+        if (activeFilters.includes("halal") && product.id % 4 === 0) return false;
+        if (activeFilters.includes("non-gmo") && product.id % 5 === 0) return false;
+        
+        if (activeFilters.includes("nutraceutical") && !product.categories.includes("standardized")) return false;
+        if (activeFilters.includes("pharmaceutical") && !product.categories.includes("organic")) return false;
+        if (activeFilters.includes("cosmetic") && !product.categories.includes("signature")) return false;
+        if (activeFilters.includes("food-beverage") && !product.categories.includes("probiotics")) return false;
+        
+        return true;
+      });
+    }
+    
+    // Apply sorting
+    result = sortProducts(result, sortOption);
+    
+    setFilteredProducts(result);
+  }, [products, searchQuery, activeFilters, sortOption]);
+
+  const sortProducts = (productsToSort: Product[], sort: string): Product[] => {
+    const sorted = [...productsToSort];
+    
+    switch (sort) {
+      case "alphabetical":
+        return sorted.sort((a, b) => a.name.localeCompare(b.name));
+      case "alphabetical-reverse":
+        return sorted.sort((a, b) => b.name.localeCompare(a.name));
+      case "newest":
+        // In a real app, we would sort by date - here we'll just reverse the order as a simulation
+        return sorted.reverse();
+      case "featured":
+      default:
+        // Keep default order
+        return sorted;
+    }
+  };
 
   const handleCategoryChange = (newCategory: string) => {
     setActiveCategory(newCategory);
@@ -96,25 +142,36 @@ const ProductsListing = ({ category }: ProductsListingProps) => {
                 <TabsTrigger value="probiotics">Probiotics</TabsTrigger>
               </TabsList>
               
-              <div className="relative w-full md:w-60">
-                <input
-                  type="text"
-                  placeholder="Search products..."
-                  className="w-full py-2 px-4 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-herb-500"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
+              <SearchInput 
+                onSearch={setSearchQuery} 
+                placeholder="Search products..." 
+                className="w-full md:w-60"
+              />
             </div>
             
+            <ProductFilters 
+              onFilterChange={setActiveFilters}
+              onSortChange={setSortOption}
+            />
+            
             <TabsContent value="all" className="mt-0">
-              {products.length === 0 ? (
-                <div className="text-center py-12">
-                  <p className="text-gray-500">No products found. Try adjusting your search.</p>
+              {filteredProducts.length === 0 ? (
+                <div className="text-center py-12 bg-gray-50 rounded-lg">
+                  <p className="text-gray-500 mb-4">No products found matching your criteria.</p>
+                  <button 
+                    className="text-herb-600 underline"
+                    onClick={() => {
+                      setSearchQuery("");
+                      setActiveFilters([]);
+                      setSortOption("featured");
+                    }}
+                  >
+                    Clear all filters
+                  </button>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {products.map(product => (
+                  {filteredProducts.map(product => (
                     <ProductCard key={product.id} product={product} />
                   ))}
                 </div>

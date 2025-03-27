@@ -4,6 +4,8 @@ import PageLayout from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CalendarDays, Clock, ArrowLeft, Share2, Bookmark, Facebook, Twitter, Linkedin } from "lucide-react";
+import NewsletterSubscription from "@/components/common/NewsletterSubscription";
+import SocialMediaLinks from "@/components/common/SocialMediaLinks";
 
 const BlogPost = () => {
   const { postId } = useParams<{ postId: string }>();
@@ -98,6 +100,34 @@ const BlogPost = () => {
     }
   ];
 
+  // Share functionality
+  const sharePost = (platform: string) => {
+    const url = window.location.href;
+    const title = post.title;
+    
+    let shareUrl = '';
+    
+    switch (platform) {
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+        break;
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+        break;
+      default:
+        // For direct sharing, copy to clipboard
+        navigator.clipboard.writeText(url).then(() => {
+          alert('Link copied to clipboard!');
+        });
+        return;
+    }
+    
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+  };
+
   return (
     <PageLayout title={post.title}>
       <div className="container-wide py-8 md:py-16">
@@ -163,62 +193,87 @@ const BlogPost = () => {
             <div className="flex flex-wrap items-center justify-between p-4 border-t border-b">
               <div className="font-medium text-gray-700">Share this article</div>
               <div className="flex gap-3">
-                <Button variant="ghost" size="sm" className="rounded-full p-2 h-auto w-auto">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="rounded-full p-2 h-auto w-auto"
+                  onClick={() => sharePost('facebook')}
+                >
                   <Facebook className="h-4 w-4" />
                 </Button>
-                <Button variant="ghost" size="sm" className="rounded-full p-2 h-auto w-auto">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="rounded-full p-2 h-auto w-auto"
+                  onClick={() => sharePost('twitter')}
+                >
                   <Twitter className="h-4 w-4" />
                 </Button>
-                <Button variant="ghost" size="sm" className="rounded-full p-2 h-auto w-auto">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="rounded-full p-2 h-auto w-auto"
+                  onClick={() => sharePost('linkedin')}
+                >
                   <Linkedin className="h-4 w-4" />
                 </Button>
-                <Button variant="ghost" size="sm" className="rounded-full p-2 h-auto w-auto">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="rounded-full p-2 h-auto w-auto"
+                  onClick={() => sharePost('direct')}
+                >
                   <Share2 className="h-4 w-4" />
                 </Button>
-                <Button variant="ghost" size="sm" className="rounded-full p-2 h-auto w-auto">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="rounded-full p-2 h-auto w-auto"
+                  onClick={() => alert('Saved to bookmarks!')}
+                >
                   <Bookmark className="h-4 w-4" />
                 </Button>
               </div>
             </div>
+            
+            <div className="mt-12">
+              <NewsletterSubscription />
+            </div>
           </div>
           
           <div className="md:col-span-1">
-            <div className="sticky top-24">
-              <h3 className="text-xl font-semibold mb-4 text-herb-800">Related Articles</h3>
-              <div className="space-y-4">
-                {relatedPosts.map(related => (
-                  <Card key={related.id} className="overflow-hidden">
-                    <Link to={`/blog/${related.id}`} className="flex">
-                      <div className="w-1/3">
-                        <img 
-                          src={related.image} 
-                          alt={related.title} 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <CardContent className="w-2/3 p-3">
-                        <span className="text-xs font-medium text-herb-700">
-                          {related.category}
-                        </span>
-                        <h4 className="text-sm font-medium line-clamp-2">{related.title}</h4>
-                        <div className="text-xs text-gray-500 mt-1">{related.date}</div>
-                      </CardContent>
-                    </Link>
-                  </Card>
-                ))}
+            <div className="sticky top-24 space-y-8">
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-herb-800">Related Articles</h3>
+                <div className="space-y-4">
+                  {relatedPosts.map(related => (
+                    <Card key={related.id} className="overflow-hidden">
+                      <Link to={`/blog/${related.id}`} className="flex">
+                        <div className="w-1/3">
+                          <img 
+                            src={related.image} 
+                            alt={related.title} 
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <CardContent className="w-2/3 p-3">
+                          <span className="text-xs font-medium text-herb-700">
+                            {related.category}
+                          </span>
+                          <h4 className="text-sm font-medium line-clamp-2">{related.title}</h4>
+                          <div className="text-xs text-gray-500 mt-1">{related.date}</div>
+                        </CardContent>
+                      </Link>
+                    </Card>
+                  ))}
+                </div>
               </div>
               
-              <div className="mt-8 bg-herb-50 p-5 rounded-lg">
-                <h3 className="text-lg font-semibold mb-3 text-herb-700">Subscribe to our newsletter</h3>
-                <p className="text-sm text-gray-600 mb-4">Stay updated with our latest insights and industry news.</p>
-                <div className="space-y-3">
-                  <input 
-                    type="email" 
-                    placeholder="Your email address" 
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-herb-500"
-                  />
-                  <Button className="w-full">Subscribe</Button>
-                </div>
+              <NewsletterSubscription variant="sidebar" />
+              
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-herb-800">Follow Us</h3>
+                <SocialMediaLinks />
               </div>
             </div>
           </div>

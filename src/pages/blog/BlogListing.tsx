@@ -1,14 +1,19 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PageLayout from "@/components/layout/PageLayout";
 import PageHeader from "@/components/common/PageHeader";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CalendarDays, Clock, ArrowRight } from "lucide-react";
+import NewsletterSubscription from "@/components/common/NewsletterSubscription";
+import SocialMediaLinks from "@/components/common/SocialMediaLinks";
+import SearchInput from "@/components/search/SearchInput";
 
 const BlogListing = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredPosts, setFilteredPosts] = useState<any[]>([]);
   
   const categories = [
     "All",
@@ -76,9 +81,21 @@ const BlogListing = () => {
     }
   ];
 
-  const filteredPosts = selectedCategory && selectedCategory !== "All" 
-    ? blogPosts.filter(post => post.category === selectedCategory) 
-    : blogPosts;
+  useEffect(() => {
+    let posts = selectedCategory && selectedCategory !== "All" 
+      ? blogPosts.filter(post => post.category === selectedCategory) 
+      : blogPosts;
+    
+    if (searchQuery.trim() !== "") {
+      posts = posts.filter(post => 
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.category.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    
+    setFilteredPosts(posts);
+  }, [selectedCategory, searchQuery]);
 
   return (
     <PageLayout title="Blog">
@@ -92,59 +109,95 @@ const BlogListing = () => {
         <div className="flex flex-col md:flex-row gap-8">
           {/* Sidebar */}
           <div className="w-full md:w-1/4">
-            <div className="sticky top-24">
-              <h3 className="text-xl font-semibold mb-4 text-herb-800">Categories</h3>
-              <div className="space-y-2">
-                {categories.map(category => (
-                  <Button
-                    key={category}
-                    variant={selectedCategory === category || (category === "All" && !selectedCategory) ? "default" : "ghost"}
-                    className="w-full justify-start"
-                    onClick={() => setSelectedCategory(category === "All" ? null : category)}
-                  >
-                    {category}
-                  </Button>
-                ))}
+            <div className="sticky top-24 space-y-8">
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-herb-800">Categories</h3>
+                <div className="space-y-2">
+                  {categories.map(category => (
+                    <Button
+                      key={category}
+                      variant={selectedCategory === category || (category === "All" && !selectedCategory) ? "default" : "ghost"}
+                      className="w-full justify-start"
+                      onClick={() => setSelectedCategory(category === "All" ? null : category)}
+                    >
+                      {category}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+              
+              <NewsletterSubscription variant="sidebar" />
+              
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-herb-800">Follow Us</h3>
+                <SocialMediaLinks />
               </div>
             </div>
           </div>
           
           {/* Blog Posts */}
           <div className="w-full md:w-3/4">
-            <div className="grid md:grid-cols-2 gap-6">
-              {filteredPosts.map(post => (
-                <Card key={post.id} className="overflow-hidden h-full flex flex-col">
-                  <div className="h-48 overflow-hidden">
-                    <img 
-                      src={post.image} 
-                      alt={post.title} 
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
-                  <CardContent className="p-6 flex-grow flex flex-col">
-                    <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
-                      <span className="flex items-center gap-1">
-                        <CalendarDays className="h-4 w-4" />
-                        {post.date}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="h-4 w-4" />
-                        {post.readTime}
-                      </span>
+            <div className="mb-6">
+              <SearchInput 
+                onSearch={setSearchQuery} 
+                placeholder="Search articles..." 
+                className="w-full md:max-w-md"
+              />
+            </div>
+            
+            {filteredPosts.length === 0 ? (
+              <div className="text-center py-16 bg-gray-50 rounded-lg">
+                <p className="text-gray-500 mb-4">No articles found matching your criteria.</p>
+                <Button 
+                  variant="outline" 
+                  onClick={() => {
+                    setSelectedCategory(null);
+                    setSearchQuery("");
+                  }}
+                >
+                  Clear filters
+                </Button>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 gap-6">
+                {filteredPosts.map(post => (
+                  <Card key={post.id} className="overflow-hidden h-full flex flex-col">
+                    <div className="h-48 overflow-hidden">
+                      <img 
+                        src={post.image} 
+                        alt={post.title} 
+                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                      />
                     </div>
-                    <span className="text-xs font-medium py-1 px-2 rounded bg-herb-100 text-herb-700 inline-block mb-2">
-                      {post.category}
-                    </span>
-                    <h3 className="text-xl font-semibold mb-2 text-herb-800">{post.title}</h3>
-                    <p className="text-gray-600 mb-4 flex-grow">{post.excerpt}</p>
-                    <Button variant="ghost" className="text-herb-600 hover:text-herb-700 hover:bg-herb-50 p-0 justify-start" asChild>
-                      <Link to={`/blog/${post.id}`}>
-                        Read More <ArrowRight className="ml-1 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
+                    <CardContent className="p-6 flex-grow flex flex-col">
+                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                        <span className="flex items-center gap-1">
+                          <CalendarDays className="h-4 w-4" />
+                          {post.date}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="h-4 w-4" />
+                          {post.readTime}
+                        </span>
+                      </div>
+                      <span className="text-xs font-medium py-1 px-2 rounded bg-herb-100 text-herb-700 inline-block mb-2">
+                        {post.category}
+                      </span>
+                      <h3 className="text-xl font-semibold mb-2 text-herb-800">{post.title}</h3>
+                      <p className="text-gray-600 mb-4 flex-grow">{post.excerpt}</p>
+                      <Button variant="ghost" className="text-herb-600 hover:text-herb-700 hover:bg-herb-50 p-0 justify-start" asChild>
+                        <Link to={`/blog/${post.id}`}>
+                          Read More <ArrowRight className="ml-1 h-4 w-4" />
+                        </Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
+            
+            <div className="mt-16">
+              <NewsletterSubscription />
             </div>
           </div>
         </div>

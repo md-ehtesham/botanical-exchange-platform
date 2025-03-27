@@ -20,14 +20,14 @@ This roadmap outlines the step-by-step development plan for the Star Hi Herbs we
 - [x] Sustainability page
 - [x] Careers page
 
-## Phase 3: Content & Engagement (In Progress)
+## Phase 3: Content & Engagement (Completed)
 - [x] Blog listing page
 - [x] Individual blog post page
 - [x] Events page
-- [ ] Newsletter subscription feature
-- [ ] Social media integration
-- [ ] Search functionality
-- [ ] Product filtering and sorting options
+- [x] Newsletter subscription feature
+- [x] Social media integration
+- [x] Search functionality
+- [x] Product filtering and sorting options
 
 ## Phase 4: Interactive Features
 - [x] Request a Quote form
