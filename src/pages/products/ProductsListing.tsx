@@ -49,16 +49,16 @@ const ProductsListing = ({ category }: ProductsListingProps) => {
     if (activeFilters.length > 0) {
       // This is just a simulation - in a real app, the products would have these properties
       result = result.filter(product => {
-        // For demo purposes, we'll just filter based on some arbitrary logic
-        if (activeFilters.includes("organic") && product.id % 2 === 0) return false;
-        if (activeFilters.includes("kosher") && product.id % 3 === 0) return false;
-        if (activeFilters.includes("halal") && product.id % 4 === 0) return false;
-        if (activeFilters.includes("non-gmo") && product.id % 5 === 0) return false;
+        // For demo purposes, we'll just filter based on some arbitrary logic using string IDs instead of modulo operations
+        if (activeFilters.includes("organic") && product.id.includes("2")) return false;
+        if (activeFilters.includes("kosher") && product.id.includes("3")) return false;
+        if (activeFilters.includes("halal") && product.id.includes("4")) return false;
+        if (activeFilters.includes("non-gmo") && product.id.includes("5")) return false;
         
-        if (activeFilters.includes("nutraceutical") && !product.categories.includes("standardized")) return false;
-        if (activeFilters.includes("pharmaceutical") && !product.categories.includes("organic")) return false;
-        if (activeFilters.includes("cosmetic") && !product.categories.includes("signature")) return false;
-        if (activeFilters.includes("food-beverage") && !product.categories.includes("probiotics")) return false;
+        if (activeFilters.includes("nutraceutical") && product.category !== "standardized") return false;
+        if (activeFilters.includes("pharmaceutical") && product.category !== "organic") return false;
+        if (activeFilters.includes("cosmetic") && product.category !== "signature") return false;
+        if (activeFilters.includes("food-beverage") && product.category !== "probiotics") return false;
         
         return true;
       });
