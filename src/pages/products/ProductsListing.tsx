@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import PageLayout from "@/components/layout/PageLayout";
 import PageHeader from "@/components/common/PageHeader";
@@ -122,6 +123,35 @@ const ProductsListing = ({ category }: ProductsListingProps) => {
     }
   };
 
+  // Render products function to avoid code duplication
+  const renderProductsList = () => {
+    if (filteredProducts.length === 0) {
+      return (
+        <div className="text-center py-12 bg-gray-50 rounded-lg">
+          <p className="text-gray-500 mb-4">No products found matching your criteria.</p>
+          <button 
+            className="text-herb-600 underline"
+            onClick={() => {
+              setSearchQuery("");
+              setActiveFilters([]);
+              setSortOption("featured");
+            }}
+          >
+            Clear all filters
+          </button>
+        </div>
+      );
+    }
+    
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {filteredProducts.map(product => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    );
+  };
+
   return (
     <PageLayout title={getCategoryTitle()}>
       <PageHeader 
@@ -132,7 +162,7 @@ const ProductsListing = ({ category }: ProductsListingProps) => {
       
       <div className="container-wide py-12">
         <div className="mb-10">
-          <Tabs defaultValue={activeCategory} onValueChange={handleCategoryChange}>
+          <Tabs defaultValue={activeCategory} value={activeCategory} onValueChange={handleCategoryChange}>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
               <TabsList className="mb-4 md:mb-0">
                 <TabsTrigger value="all">All Products</TabsTrigger>
@@ -155,43 +185,23 @@ const ProductsListing = ({ category }: ProductsListingProps) => {
             />
             
             <TabsContent value="all" className="mt-0">
-              {filteredProducts.length === 0 ? (
-                <div className="text-center py-12 bg-gray-50 rounded-lg">
-                  <p className="text-gray-500 mb-4">No products found matching your criteria.</p>
-                  <button 
-                    className="text-herb-600 underline"
-                    onClick={() => {
-                      setSearchQuery("");
-                      setActiveFilters([]);
-                      setSortOption("featured");
-                    }}
-                  >
-                    Clear all filters
-                  </button>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {filteredProducts.map(product => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
-                </div>
-              )}
+              {renderProductsList()}
             </TabsContent>
             
             <TabsContent value="standardized" className="mt-0">
-              {/* Content will be populated by the effect */}
+              {renderProductsList()}
             </TabsContent>
             
             <TabsContent value="organic" className="mt-0">
-              {/* Content will be populated by the effect */}
+              {renderProductsList()}
             </TabsContent>
             
             <TabsContent value="signature" className="mt-0">
-              {/* Content will be populated by the effect */}
+              {renderProductsList()}
             </TabsContent>
             
             <TabsContent value="probiotics" className="mt-0">
-              {/* Content will be populated by the effect */}
+              {renderProductsList()}
             </TabsContent>
           </Tabs>
         </div>
