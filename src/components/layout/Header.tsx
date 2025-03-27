@@ -98,10 +98,19 @@ const Header = () => {
 
       {/* Mobile Menu */}
       <div 
-        className={`fixed inset-0 bg-white/95 backdrop-blur-sm z-40 transform transition-transform duration-300 ease-in-out pt-20 ${
+        className={`fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-in-out pt-20 ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         } lg:hidden`}
       >
+        {/* Close button for mobile menu - added at the top right */}
+        <button 
+          className="absolute top-4 right-4 text-foreground p-2"
+          onClick={() => setIsMenuOpen(false)}
+          aria-label="Close menu"
+        >
+          <X size={24} />
+        </button>
+        
         <div className="container px-4 py-6 space-y-6 overflow-y-auto max-h-[calc(100vh-5rem)]">
           <div className="space-y-1">
             <div className="font-medium text-lg px-2 py-1 text-herb-700">Products</div>
