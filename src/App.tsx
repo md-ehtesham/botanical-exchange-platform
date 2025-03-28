@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -22,9 +21,18 @@ import CSR from "./pages/company/CSR";
 import Careers from "./pages/company/Careers";
 import FAQ from "./pages/FAQ";
 
+// New Company Pages
+import OurStory from "./pages/company/OurStory";
+import Team from "./pages/company/Team";
+import Facilities from "./pages/company/Facilities";
+
 // Blog Pages
 import BlogListing from "./pages/blog/BlogListing";
 import BlogPost from "./pages/blog/BlogPost";
+
+// Legal Pages
+import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
+import TermsOfService from "./pages/legal/TermsOfService";
 
 // Other Pages
 import ContactUs from "./pages/ContactUs";
@@ -63,6 +71,9 @@ const App = () => (
           
           {/* Company Routes */}
           <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/our-story" element={<OurStory />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/facilities" element={<Facilities />} />
           <Route path="/quality-assurance" element={<Quality />} />
           <Route path="/sustainability" element={<Sustainability />} />
           <Route path="/csr-initiatives" element={<CSR />} />
@@ -72,6 +83,10 @@ const App = () => (
           {/* Blog Routes */}
           <Route path="/blog" element={<BlogListing />} />
           <Route path="/blog/:postId" element={<BlogPost />} />
+          
+          {/* Legal Pages */}
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
           
           {/* Other Routes */}
           <Route path="/contact-us" element={<ContactUs />} />

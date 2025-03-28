@@ -81,12 +81,9 @@ const Header = () => {
           </Link>
         </nav>
 
-        {/* Login & CTA Buttons */}
+        {/* CTA Button */}
         <div className="hidden lg:flex items-center space-x-3">
-          <Button variant="ghost" size="sm" asChild>
-            <Link to="/login">Client Login</Link>
-          </Button>
-          <Button variant="default" size="sm" className="bg-starhi-green hover:bg-starhi-green/90" asChild>
+          <Button variant="default" size="sm" className="bg-starhi-green hover:bg-starhi-green/90 text-white" asChild>
             <Link to="/request-quote">Request a Quote</Link>
           </Button>
         </div>
@@ -103,7 +100,7 @@ const Header = () => {
 
       {/* Mobile Menu */}
       <div 
-        className={`fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-in-out pt-20 ${
+        className={`fixed inset-0 bg-white/95 backdrop-blur-md z-40 transform transition-transform duration-300 ease-in-out pt-20 ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         } lg:hidden`}
       >
@@ -172,10 +169,7 @@ const Header = () => {
           </div>
           
           <div className="pt-6 space-y-3">
-            <Button variant="outline" className="w-full justify-center" asChild>
-              <Link to="/login" onClick={() => setIsMenuOpen(false)}>Client Login</Link>
-            </Button>
-            <Button variant="default" className="w-full justify-center bg-starhi-green hover:bg-starhi-green/90" asChild>
+            <Button variant="default" className="w-full justify-center bg-starhi-green hover:bg-starhi-green/90 text-white" asChild>
               <Link to="/request-quote" onClick={() => setIsMenuOpen(false)}>Request a Quote</Link>
             </Button>
           </div>

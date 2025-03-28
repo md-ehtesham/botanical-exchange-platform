@@ -67,7 +67,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/catalog" className="text-white/80 hover:text-white transition-colors flex items-center">
+                <Link to="/download-catalogue" className="text-white/80 hover:text-white transition-colors flex items-center">
                   <span className="h-1 w-1 bg-white rounded-full mr-2"></span>
                   Download Catalog
                 </Link>
@@ -103,9 +103,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/careers" className="text-white/80 hover:text-white transition-colors flex items-center">
+                <Link to="/events" className="text-white/80 hover:text-white transition-colors flex items-center">
                   <span className="h-1 w-1 bg-white rounded-full mr-2"></span>
-                  Careers
+                  Events
                 </Link>
               </li>
               <li>
@@ -119,24 +119,49 @@ const Footer = () => {
 
           <div>
             <h4 className="text-lg font-medium mb-4 text-white">Contact Us</h4>
-            <ul className="space-y-4">
-              <li className="flex items-start">
+            <div className="text-white/90 space-y-4">
+              <div className="flex items-start">
                 <MapPin className="mr-3 h-5 w-5 text-white flex-shrink-0 mt-0.5" />
-                <span className="text-white/90">123 Botanical Way, Herbal District, HD 12345, India</span>
-              </li>
-              <li className="flex items-center">
+                <div>
+                  <p className="font-semibold">Unit-1 (Corporate Office)</p>
+                  <p>STAR HI HERBS PVT LTD</p>
+                  <p>Plot No. 50, 3rd Road, 1st Phase</p>
+                  <p>K. I. A. D. B. Industrial Area, Jigani</p>
+                  <p>Bengaluru - 560105, Karnataka, India</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <MapPin className="mr-3 h-5 w-5 text-white flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold">Unit-2 (Production)</p>
+                  <p>STAR HI HERBS PVT LTD</p>
+                  <p>Plot No 105-B, Pharma SEZ</p>
+                  <p>KIADB Industrial Area</p>
+                  <p>Hassan - 573 201</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center">
                 <Phone className="mr-3 h-5 w-5 text-white flex-shrink-0" />
-                <a href="tel:+911234567890" className="text-white/90 hover:text-white transition-colors">
-                  +91 123 456 7890
-                </a>
-              </li>
-              <li className="flex items-center">
+                <div>
+                  <p>+91 81104 17554</p>
+                  <p>+91 98864 22452</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center">
                 <Mail className="mr-3 h-5 w-5 text-white flex-shrink-0" />
-                <a href="mailto:info@starhiherbs.com" className="text-white/90 hover:text-white transition-colors">
-                  info@starhiherbs.com
-                </a>
-              </li>
-            </ul>
+                <div>
+                  <a href="mailto:info@starhiherbs.com" className="block text-white/90 hover:text-white transition-colors">
+                    info@starhiherbs.com
+                  </a>
+                  <a href="mailto:najish.n@starhiherbs.com" className="block text-white/90 hover:text-white transition-colors">
+                    najish.n@starhiherbs.com
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
