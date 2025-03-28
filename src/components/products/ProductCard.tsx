@@ -27,7 +27,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <h3 className="text-lg font-semibold mb-2 text-herb-700">{product.name}</h3>
         <p className="text-gray-600 text-sm mb-4 line-clamp-3">{product.shortDescription}</p>
         <div className="flex justify-between items-center">
-          <Button variant="ghost" size="sm" className="text-herb-600 hover:text-herb-700 hover:bg-herb-50 p-0" asChild>
+          <Button variant="ghost" size="sm" className="text-starhi-green hover:text-starhi-green-dark hover:bg-starhi-green/10 p-0" asChild>
             <Link to={`/products/${product.id}`}>
               View Details <ArrowRight className="ml-1 h-4 w-4" />
             </Link>

@@ -29,23 +29,23 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         
-        // StarHi Herbs brand colors
-        "starhi-green": "#008F00",
-        "starhi-green-dark": "#007000",
-        "starhi-green-light": "#00A000",
+        // StarHi Herbs brand colors - updated to a more premium dark green
+        "starhi-green": "#00582C",
+        "starhi-green-dark": "#004020",
+        "starhi-green-light": "#006D38",
         
         // Keep the old herb colors for backward compatibility
         herb: {
-          50: "#e6f7e6",
-          100: "#c3eac3",
-          200: "#9edd9e",
-          300: "#78cf78",
-          400: "#52c252", 
-          500: "#2ca52c",
-          600: "#008F00", // Main brand color
-          700: "#007000",
-          800: "#005700",
-          900: "#003D00",
+          50: "#e6f2ed",
+          100: "#c3e0d3",
+          200: "#9ecdb9",
+          300: "#78b99e",
+          400: "#52a683", 
+          500: "#2c8d67",
+          600: "#00582C", // Main brand color - updated
+          700: "#004020",
+          800: "#003416",
+          900: "#00240e",
         },
         cream: {
           50: "#fdfbf7",
