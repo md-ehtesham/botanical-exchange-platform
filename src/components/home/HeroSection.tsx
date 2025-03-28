@@ -69,7 +69,7 @@ const HeroSection = () => {
               
               <div className="w-full h-[500px] rounded-2xl bg-white shadow-medium overflow-hidden relative z-10">
                 <img 
-                  src="https://images.unsplash.com/photo-1471193945509-9ad0617afabf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
+                  src="/lovable-uploads/2f40721d-b1fd-4594-a49d-ba85da03ed4b.png" 
                   alt="Herbal extracts in laboratory" 
                   className="w-full h-full object-cover"
                 />

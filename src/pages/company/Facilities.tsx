@@ -2,19 +2,19 @@
 import PageLayout from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { Check, MapPin } from "lucide-react";
+import PageHeader from "@/components/common/PageHeader";
 
 const Facilities = () => {
   return (
     <PageLayout title="Our Facilities">
+      <PageHeader 
+        title="Our State-of-the-Art Facilities" 
+        subtitle="Equipped with advanced technology to deliver premium herbal extracts and ingredients."
+        backgroundImage="/lovable-uploads/2f40721d-b1fd-4594-a49d-ba85da03ed4b.png"
+      />
+      
       <div className="bg-gray-50 py-16">
         <div className="container-wide">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">Our State-of-the-Art Facilities</h1>
-            <p className="text-lg text-muted-foreground">
-              Equipped with advanced technology to deliver premium herbal extracts and ingredients.
-            </p>
-          </div>
-          
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <h2 className="text-2xl font-bold mb-4 flex items-center">
@@ -37,13 +37,13 @@ const Facilities = () => {
               </p>
             </div>
             <div className="rounded-lg overflow-hidden shadow-md">
-              <img src="/placeholder.svg" alt="Corporate Office in Bengaluru" className="w-full h-auto" />
+              <img src="/lovable-uploads/1c951dc7-1ef1-4a68-b225-545fa0804cf7.png" alt="Corporate Office in Bengaluru" className="w-full h-auto" />
             </div>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div className="order-2 lg:order-1 rounded-lg overflow-hidden shadow-md">
-              <img src="/placeholder.svg" alt="Production Facility in Hassan" className="w-full h-auto" />
+              <img src="/lovable-uploads/1c951dc7-1ef1-4a68-b225-545fa0804cf7.png" alt="Production Facility in Hassan" className="w-full h-auto" />
             </div>
             <div className="order-1 lg:order-2">
               <h2 className="text-2xl font-bold mb-4 flex items-center">
@@ -68,6 +68,27 @@ const Facilities = () => {
             </div>
           </div>
           
+          <div className="mt-12 mb-16">
+            <h2 className="text-2xl font-bold mb-6 text-center">Our Production Capabilities</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+              <FacilityImage 
+                src="/lovable-uploads/d90b1752-0f7d-418e-a679-496142f414c5.png" 
+                alt="Quality Control Laboratory" 
+                caption="State-of-the-art quality control laboratory"
+              />
+              <FacilityImage 
+                src="/lovable-uploads/74f8d5e8-c619-4e61-9c35-31510b8599a2.png" 
+                alt="Extraction Equipment" 
+                caption="Advanced extraction equipment"
+              />
+              <FacilityImage 
+                src="/lovable-uploads/7d9049e2-60e1-4d74-84e3-5fd35d36460f.png" 
+                alt="Clean Room Facility" 
+                caption="Clean room manufacturing facilities"
+              />
+            </div>
+          </div>
+          
           <div className="bg-white rounded-lg shadow-sm p-8 text-center mt-12">
             <h2 className="text-2xl font-bold mb-4">Visit Our Facilities</h2>
             <p className="max-w-2xl mx-auto mb-6 text-muted-foreground">
@@ -88,6 +109,19 @@ const FacilityFeature = ({ text }: { text: string }) => (
     <Check className="h-5 w-5 text-starhi-green mr-2 mt-0.5 flex-shrink-0" />
     <span>{text}</span>
   </li>
+);
+
+const FacilityImage = ({ src, alt, caption }: { src: string; alt: string; caption: string }) => (
+  <div className="overflow-hidden rounded-lg shadow-md">
+    <div className="aspect-video">
+      <img src={src} alt={alt} className="w-full h-full object-cover" />
+    </div>
+    {caption && (
+      <div className="p-4 bg-white">
+        <p className="text-center font-medium text-sm">{caption}</p>
+      </div>
+    )}
+  </div>
 );
 
 export default Facilities;

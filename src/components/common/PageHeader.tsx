@@ -11,7 +11,7 @@ interface PageHeaderProps {
 const PageHeader = ({
   title,
   subtitle,
-  backgroundImage = "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3882&q=80",
+  backgroundImage = "/lovable-uploads/2f40721d-b1fd-4594-a49d-ba85da03ed4b.png",
   children,
 }: PageHeaderProps) => {
   return (

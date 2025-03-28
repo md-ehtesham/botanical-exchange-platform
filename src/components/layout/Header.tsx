@@ -98,9 +98,9 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Updated to have solid white background */}
       <div 
-        className={`fixed inset-0 bg-white/95 backdrop-blur-md z-40 transform transition-transform duration-300 ease-in-out pt-20 ${
+        className={`fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-in-out pt-20 ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         } lg:hidden`}
       >

@@ -12,7 +12,7 @@ const AboutSection = () => {
             <div className="relative">
               <div className="relative z-10 rounded-lg overflow-hidden shadow-medium">
                 <img
-                  src="https://images.unsplash.com/photo-1540845511934-7721dd7adec3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                  src="/lovable-uploads/1c951dc7-1ef1-4a68-b225-545fa0804cf7.png"
                   alt="Star Hi Herbs facility"
                   className="w-full h-[500px] object-cover"
                 />
@@ -68,7 +68,7 @@ const AboutSection = () => {
                 </li>
               </ul>
               <Button
-                className="bg-herb-500 hover:bg-herb-600 shadow-md"
+                className="bg-herb-500 hover:bg-herb-600 shadow-md text-white"
                 asChild
               >
                 <Link to="/about-us">Learn More About Us</Link>
