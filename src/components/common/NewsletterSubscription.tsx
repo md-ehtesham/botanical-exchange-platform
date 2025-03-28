@@ -48,12 +48,12 @@ const NewsletterSubscription = ({ className = "", variant = "default" }: Newslet
           <input 
             type="email" 
             placeholder="Your email address" 
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-herb-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-starhi-green"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <Button type="submit" className="w-full" disabled={isSubmitting}>
+          <Button type="submit" className="w-full text-white" disabled={isSubmitting}>
             {isSubmitting ? "Subscribing..." : "Subscribe"}
           </Button>
         </form>
@@ -64,7 +64,7 @@ const NewsletterSubscription = ({ className = "", variant = "default" }: Newslet
   return (
     <div className={`bg-herb-50 py-12 px-6 md:px-12 rounded-xl ${className}`}>
       <div className="max-w-4xl mx-auto text-center">
-        <Mail className="h-12 w-12 mx-auto mb-4 text-herb-600" />
+        <Mail className="h-12 w-12 mx-auto mb-4 text-starhi-green" />
         <h2 className="text-2xl md:text-3xl font-bold mb-3 text-herb-800">Subscribe to Our Newsletter</h2>
         <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
           Stay updated with our latest product releases, industry insights, and exclusive offers by subscribing to our newsletter.
@@ -73,12 +73,12 @@ const NewsletterSubscription = ({ className = "", variant = "default" }: Newslet
           <input
             type="email"
             placeholder="Your email address"
-            className="flex-grow px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-herb-500"
+            className="flex-grow px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-starhi-green"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <Button type="submit" disabled={isSubmitting}>
+          <Button type="submit" className="text-white" disabled={isSubmitting}>
             {isSubmitting ? "Subscribing..." : "Subscribe"}
           </Button>
         </form>

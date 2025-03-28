@@ -43,7 +43,7 @@ const HeroSection = () => {
             <div className="flex flex-wrap gap-4">
               <Button 
                 size="lg" 
-                className="bg-herb-500 hover:bg-herb-600 shadow-md" 
+                className="bg-starhi-green text-white hover:bg-starhi-green-dark shadow-md" 
                 asChild
               >
                 <Link to="/products">
@@ -54,7 +54,7 @@ const HeroSection = () => {
               <Button 
                 variant="outline"
                 size="lg"
-                className="border-herb-500 text-herb-500 hover:bg-herb-50"
+                className="border-starhi-green text-starhi-green hover:bg-starhi-green/10"
                 asChild
               >
                 <Link to="/about-us">Learn More</Link>

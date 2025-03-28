@@ -13,14 +13,23 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', asChild = false, href, children, ...props }, ref) => {
-    const baseStyles = 'btn';
-    const variantStyles = `btn-${variant}`;
-    const sizeStyles = `btn-${size}`;
+    const variantStyles = {
+      primary: "bg-starhi-green text-white hover:bg-starhi-green-dark",
+      secondary: "bg-white text-starhi-green hover:bg-gray-50 border border-gray-200",
+      outlined: "bg-transparent border border-starhi-green text-starhi-green hover:bg-starhi-green/10",
+      ghost: "bg-transparent text-starhi-green hover:bg-starhi-green/10"
+    };
+    
+    const sizeStyles = {
+      sm: "px-3 py-1 text-sm",
+      md: "px-4 py-2",
+      lg: "px-6 py-3 text-lg"
+    };
     
     const buttonClasses = cn(
-      baseStyles,
-      variantStyles,
-      sizeStyles,
+      "inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-starhi-green focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none",
+      variantStyles[variant],
+      sizeStyles[size],
       className
     );
 

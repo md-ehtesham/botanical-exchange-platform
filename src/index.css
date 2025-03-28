@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -69,6 +70,40 @@
   }
   h4 {
     @apply text-lg md:text-xl font-semibold;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  
+  .btn-primary {
+    @apply bg-starhi-green text-white hover:bg-starhi-green-dark;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-starhi-green hover:bg-gray-50 border border-gray-200;
+  }
+  
+  .btn-outlined {
+    @apply bg-transparent border border-starhi-green text-starhi-green hover:bg-starhi-green/10;
+  }
+  
+  .btn-ghost {
+    @apply bg-transparent text-starhi-green hover:bg-starhi-green/10;
+  }
+  
+  .btn-sm {
+    @apply px-3 py-1 text-sm;
+  }
+  
+  .btn-md {
+    @apply px-4 py-2;
+  }
+  
+  .btn-lg {
+    @apply px-6 py-3 text-lg;
   }
 }
 

@@ -167,7 +167,7 @@ const ProductsSection = () => {
               key={index}
               onClick={() => scrollToProduct(index)}
               className={`h-2 w-2 rounded-full mx-1 ${
-                index === activeIndex ? 'bg-herb-500' : 'bg-herb-200'
+                index === activeIndex ? 'bg-starhi-green' : 'bg-herb-200'
               }`}
               aria-label={`Go to product ${index + 1}`}
             />

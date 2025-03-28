@@ -56,7 +56,7 @@ const CompareButton = ({ productId, className = "" }: CompareButtonProps) => {
     <Button 
       variant="ghost" 
       size="sm" 
-      className={`px-2 hover:bg-starhi-green/10 hover:text-starhi-green ${className}`}
+      className={`px-2 hover:bg-starhi-green/10 text-starhi-green hover:text-starhi-green-dark ${className}`}
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
